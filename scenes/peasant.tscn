@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdk3084mbh4vh"]
+
+[ext_resource type="ArrayMesh" uid="uid://bk4q8cuuggdu2" path="res://materials/peasant.res" id="1_l3mrf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4ixqj"]
+height = 0.1
+
+[node name="RigidBody3D" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.000949741, 0, 0.0969954, 0, 0.097, 0, -0.0969954, 0, -0.000949741, 0, 0, 0)
+mesh = ExtResource("1_l3mrf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_4ixqj")

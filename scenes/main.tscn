@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=3 uid="uid://bvs6gglkbayok"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_e4wbv"]
+[ext_resource type="Texture2D" uid="uid://kcglvdm30sxv" path="res://materials/map.webp" id="2_p68rv"]
+[ext_resource type="Texture2D" uid="uid://bis076shgpqd8" path="res://materials/mtable.png" id="4_2qhnm"]
+[ext_resource type="Texture2D" uid="uid://b72s2sidvuh75" path="res://materials/plan.jpg" id="5_7dbiq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfs53"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edtwx"]
+albedo_texture = ExtResource("2_p68rv")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7w5c7"]
+size = Vector2(2.8, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icrgp"]
+albedo_texture = ExtResource("4_2qhnm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v7ckp"]
+size = Vector2(8, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_br4de"]
+size = Vector3(9, 1, 10)
+
+[sub_resource type="GDScript" id="GDScript_rtkvl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qk2jh"]
+albedo_texture = ExtResource("5_7dbiq")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0sq6n"]
+size = Vector2(2, 2.8)
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_e4wbv")
+
+[node name="Map" type="StaticBody3D" parent="."]
+
+[node name="MapCollision" type="CollisionShape3D" parent="Map"]
+shape = SubResource("BoxShape3D_tfs53")
+
+[node name="MapMesh" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.092672)
+material_override = SubResource("StandardMaterial3D_edtwx")
+mesh = SubResource("PlaneMesh_7w5c7")
+
+[node name="Table" type="StaticBody3D" parent="."]
+
+[node name="TableMesh" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+material_override = SubResource("StandardMaterial3D_icrgp")
+mesh = SubResource("PlaneMesh_v7ckp")
+
+[node name="TableCollision" type="CollisionShape3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_br4de")
+
+[node name="MainLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0321435, 0.999483, 0, -0.999483, -0.0321435, 0, 1.12407, 0)
+shadow_enabled = true
+
+[node name="CoinsLabel" type="Label3D" parent="."]
+transform = Transform3D(1, -1.74846e-07, 3.82137e-15, 3.82137e-15, 4.37114e-08, 1, -1.74846e-07, -1, 4.37114e-08, -1.27378, 0.01, -1.78471)
+text = "RANDOM TEXT
+"
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.49887, 0)
+fov = 109.688
+script = SubResource("GDScript_rtkvl")
+
+[node name="PlayerTablet" type="RigidBody3D" parent="."]
+gravity_scale = 0.0
+
+[node name="PlayerTabletMesh" type="MeshInstance3D" parent="PlayerTablet"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.292, 2.56576)
+material_override = SubResource("StandardMaterial3D_qk2jh")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_0sq6n")
